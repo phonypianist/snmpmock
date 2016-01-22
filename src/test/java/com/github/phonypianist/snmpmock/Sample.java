@@ -21,8 +21,6 @@ import org.snmp4j.smi.TimeTicks;
 import org.snmp4j.smi.VariableBinding;
 import org.snmp4j.transport.DefaultUdpTransportMapping;
 
-import com.github.phonypianist.snmpmock.rule.SnmpTrapMockRule;
-
 public class Sample {
     @Rule
     public SnmpTrapMockRule rule = new SnmpTrapMockRule();
@@ -31,7 +29,7 @@ public class Sample {
     public void startStop() throws IOException, InterruptedException {
         sendTrap("127.0.0.1", 162);
         Thread.sleep(1000);
-        List<CommandResponderEvent> received = rule.getReceived();
+        List<CommandResponderEvent> received = rule.getTraps();
         assertThat(received.size(), is(1));
     }
 

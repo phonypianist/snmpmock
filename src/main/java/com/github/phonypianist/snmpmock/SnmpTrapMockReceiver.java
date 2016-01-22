@@ -57,4 +57,10 @@ public class SnmpTrapMockReceiver {
             snmp.addCommandResponder(listener);
         }
     }
+
+    public void removeListener(CommandResponder listener) {
+        if (snmp != null) {
+            snmp.removeCommandResponder(listener);
+        }
+    }
 }
