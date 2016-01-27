@@ -7,6 +7,7 @@ Usage
 Define SnmpTrapMockRule.
 
 ```java
+@Rule
 public SnmpTrapMockRule snmpTrapMockRule = new SnmpTrapMockRule();
 ```
 
@@ -19,9 +20,9 @@ And use rule as follows:
 snmpTrapMockRule.waitFor(1, 1000);
 
 // Retrieve traps
-assertThat(rule.getTrapCount(), is(1));
+assertThat(snmpTrapMockRule.getTrapCount(), is(1));
 assertThat(
-        rule.getVariableBinding(0,
+        snmpTrapMockRule.getVariableBinding(0,
                 SnmpConstants.snmpTrapOID.toString()).getVariable().toString(),
         is("1.3.6.1.6.3.1.1.5.4"));
 ```
