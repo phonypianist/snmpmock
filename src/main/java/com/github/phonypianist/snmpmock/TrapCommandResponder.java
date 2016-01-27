@@ -7,7 +7,6 @@ import java.util.Vector;
 import org.snmp4j.CommandResponder;
 import org.snmp4j.CommandResponderEvent;
 import org.snmp4j.smi.OID;
-import org.snmp4j.smi.Variable;
 import org.snmp4j.smi.VariableBinding;
 
 public class TrapCommandResponder implements CommandResponder {
@@ -17,8 +16,9 @@ public class TrapCommandResponder implements CommandResponder {
         received = new ArrayList<CommandResponderEvent>();
     }
 
-    public void processPdu(CommandResponderEvent event) {
+    public synchronized void processPdu(CommandResponderEvent event) {
         received.add(event);
+        notifyAll();
     }
 
     public int getTrapCount() {

@@ -8,6 +8,7 @@ import org.junit.runner.Description;
 import org.junit.runners.model.FrameworkMethod;
 import org.junit.runners.model.Statement;
 import org.snmp4j.CommandResponderEvent;
+import org.snmp4j.smi.VariableBinding;
 
 public class SnmpTrapMockRule implements MethodRule, TestRule {
     private SnmpTrapMockReceiver receiver;
@@ -20,6 +21,37 @@ public class SnmpTrapMockRule implements MethodRule, TestRule {
 
     public SnmpTrapMockRule(SnmpTrapMockReceiver receiver) {
         this.receiver = receiver;
+    }
+
+    public void waitFor(int traps, long timeout) {
+        long end = System.currentTimeMillis() + timeout;
+        try {
+            synchronized (responder) {
+                while (responder.getTrapCount() < traps) {
+                    long span = end - System.currentTimeMillis();
+                    if (span <= 0) {
+                        int remained = traps - responder.getTrapCount();
+                        throw new InterruptedException(
+                                remained + " trap(s) were not reached.");
+                    }
+                    responder.wait(span);
+                }
+            }
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    
+    public int getTrapCount() {
+        return responder.getTrapCount();
+    }
+    
+    public CommandResponderEvent getTrap(int index) {
+        return responder.getTrap(index);
+    }
+    
+    public VariableBinding getVariableBinding(int index, String oid) {
+        return responder.getVariableBinding(index, oid);
     }
 
     public List<CommandResponderEvent> getTraps() {
@@ -44,7 +76,6 @@ public class SnmpTrapMockRule implements MethodRule, TestRule {
                     stop();
                 }
             }
-
         };
     }
 

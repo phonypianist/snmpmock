@@ -5,7 +5,7 @@
   <version>0.0.1-SNAPSHOT</version>
 
   <properties>
-    <jdk.version>1.5</jdk.version>
+    <jdk.version>1.8</jdk.version>
   </properties>
 
   <dependencies>
