@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.github.phonypianist</groupId>
   <artifactId>snmpmock</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>0.1</version>
 
   <properties>
     <jdk.version>1.8</jdk.version>
