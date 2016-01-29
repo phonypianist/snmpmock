@@ -3,9 +3,94 @@
   <groupId>com.github.phonypianist</groupId>
   <artifactId>snmpmock</artifactId>
   <version>0.1</version>
+  <packaging>jar</packaging>
+  <name>snmpmock</name>
+  <description>SNMP Trap mock server for JUnit</description>
+  <url>https://github.com/phonypianist/snmpmock</url>
+
+  <licenses>
+    <license>
+      <name>The MIT License</name>
+      <url>https://opensource.org/licenses/MIT</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+
+  <scm>
+    <url>https://github.com/phonypianist/snmpmock</url>
+    <connection>scm:git:git://github.com/phonypianist/snmpmock.git</connection>
+    <developerConnection>scm:git:git://github.com/phonypianist/snmpmock.git</developerConnection>
+  </scm>
+
+  <developers>
+    <developer>
+      <id>phonypianist</id>
+      <name>Yuichiro Sakamoto</name>
+      <email>phonypianist@gmail.com</email>
+      <url>http://phonypianist.sakura.ne.jp/</url>
+      <roles>
+        <role>lead</role>
+        <role>architect</role>
+        <role>developer</role>
+      </roles>
+      <timezone>-9</timezone>
+    </developer>
+  </developers>
+
+  <issueManagement>
+    <system>GitHub</system>
+    <url>https://github.com/phonypianist/snmpmock/issues</url>
+  </issueManagement>
+
+  <distributionManagement>
+    <repository>
+      <id>ossrh</id>
+      <name>Nexus Release Repository</name>
+      <uniqueVersion>false</uniqueVersion>
+      <url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
+    </repository>
+    <snapshotRepository>
+      <id>ossrh</id>
+      <name>Nexus Snapshots Repository</name>
+      <uniqueVersion>false</uniqueVersion>
+      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+    </snapshotRepository>
+  </distributionManagement>
+
+  <profiles>
+    <profile>
+      <id>release-sign-artifacts</id>
+      <activation>
+        <property>
+          <name>performRelease</name>
+          <value>true</value>
+        </property>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-gpg-plugin</artifactId>
+            <version>1.6</version>
+            <executions>
+              <execution>
+                <id>sign-artifacts</id>
+                <phase>verify</phase>
+                <goals>
+                  <goal>sign</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
 
   <properties>
-    <jdk.version>1.8</jdk.version>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
 
   <dependencies>
