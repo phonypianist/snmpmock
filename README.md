@@ -1,10 +1,25 @@
 This is a mock server for SNMP trap (using JUnit).  The code is released under the [MIT license](http://www.opensource.org/licenses/mit-license.php).
 
 
+Installation
+=====
+
+Add the following to your project's pom.xml:
+
+```xml
+<dependency>
+    <groupId>com.github.phonypianist</groupId>
+    <artifactId>snmpmock</artifactId>
+    <version>0.1</version>
+    <scope>test</scope>
+</dependency>
+```
+
+
 Usage
 =====
 
-Define SnmpTrapMockRule.
+Define SnmpTrapMockRule:
 
 ```java
 @Rule
