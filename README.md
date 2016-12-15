@@ -10,7 +10,7 @@ Add the following to your project's pom.xml:
 <dependency>
     <groupId>com.github.phonypianist</groupId>
     <artifactId>snmpmock</artifactId>
-    <version>0.1</version>
+    <version>0.2</version>
     <scope>test</scope>
 </dependency>
 ```

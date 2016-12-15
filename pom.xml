@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.github.phonypianist</groupId>
   <artifactId>snmpmock</artifactId>
-  <version>0.1</version>
+  <version>0.2</version>
   <packaging>jar</packaging>
   <name>snmpmock</name>
   <description>SNMP Trap mock server for JUnit</description>
