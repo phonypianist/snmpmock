@@ -22,6 +22,11 @@ public class SnmpTrapMockRule implements MethodRule, TestRule {
     public SnmpTrapMockRule(SnmpTrapMockReceiver receiver) {
         this.receiver = receiver;
     }
+    
+    public SnmpTrapMockRule waitOnClose(long delayOnClose) {
+    	receiver.setDelayOnClose(delayOnClose);
+    	return this;
+    }
 
     public void waitFor(int traps, long timeout) {
         long end = System.currentTimeMillis() + timeout;

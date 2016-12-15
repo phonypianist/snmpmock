@@ -22,6 +22,8 @@ public class SnmpTrapMockReceiver {
     private int port;
 
     private Snmp snmp;
+    
+    private long delayOnClose;
 
     public SnmpTrapMockReceiver() {
         this(162);
@@ -29,6 +31,7 @@ public class SnmpTrapMockReceiver {
 
     public SnmpTrapMockReceiver(int port) {
         this.port = port;
+        this.delayOnClose = 0;
     }
 
     public void start() throws IOException {
@@ -49,6 +52,11 @@ public class SnmpTrapMockReceiver {
     public void stop() throws IOException {
         if (snmp != null) {
             snmp.close();
+            try {
+				Thread.sleep(delayOnClose);
+			} catch (InterruptedException ex) {
+				throw new IOException(ex);
+			}
         }
     }
 
@@ -62,5 +70,9 @@ public class SnmpTrapMockReceiver {
         if (snmp != null) {
             snmp.removeCommandResponder(listener);
         }
+    }
+    
+    public void setDelayOnClose(long delayOnClose) {
+    	this.delayOnClose = delayOnClose;
     }
 }

@@ -24,7 +24,7 @@ import org.snmp4j.transport.DefaultUdpTransportMapping;
 
 public class SendTrapTest {
     @Rule
-    public SnmpTrapMockRule rule = new SnmpTrapMockRule();
+    public SnmpTrapMockRule rule = new SnmpTrapMockRule().waitOnClose(500);
 
     @Test
     public void send1Trap() {
